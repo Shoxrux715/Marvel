@@ -11,8 +11,11 @@ import Kingfisher
 import WebKit
 
 struct ComicForCharacterDetailsView: View {
+    
     var com: Items
+    
     @State var Info: ComicDetails?
+    
     @StateObject var vm = ApiForCharactersComic()
     
     
@@ -25,7 +28,7 @@ struct ComicForCharacterDetailsView: View {
                 ScrollView{
                     VStack(alignment: .center, spacing: 20) {
                         HStack(alignment: .center){
-                            KFImage(Extracters.extractImage(data: vm.comics?.thumbnail ?? ["":""] ))
+                            KFImage(Extracters.extractImageURL(data: vm.comics?.thumbnail ?? ["":""] ))
                                 .aspectRatio(1, contentMode: .fill)
                                 .frame(minWidth: 450, alignment: .center)
                                 .scaledToFill()

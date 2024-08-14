@@ -19,7 +19,7 @@ struct FavouritesView: View {
         } label: {
             HStack(alignment: .top, spacing: 20){
                 HStack(alignment: .center){
-                    KFImage(Extracters.extractImage(data: comics.thumbnail))
+                    KFImage(Extracters.extractImageURL(data: comics.thumbnail))
                         .resizable()
                         .scaledToFill()
                         .clipped()

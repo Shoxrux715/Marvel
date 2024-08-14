@@ -84,7 +84,7 @@ struct SettingsTabView: View {
         }
         .tint(tintColor)
         .sheet(isPresented: $changeTheme, content: {
-            ThemeChanger(scheme: scheme)
+            ThemeChangerView(scheme: scheme)
                 .presentationDetents([.height(410)])
                 .presentationBackground(.clear)
         })

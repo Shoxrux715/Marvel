@@ -12,6 +12,7 @@ import WebKit
 import SwiftUI
 
 class ApiForCharacterList: ObservableObject {
+    
     @Published var character: CharacterDetails?
     
     @Published var isLoading = true
@@ -22,7 +23,7 @@ class ApiForCharacterList: ObservableObject {
         let ts = String(Date().timeIntervalSince1970)
         let hash = Converters.MD5(data: "\(ts)\(Constants.apiPrivateKey)\(Constants.apiPublicKey)")
         lazy var reserveURL = URL(string: (""))
-        let neededURL = Converters.httpsURL(url: URL(string:(char.resourceURI ?? "")+"?ts=\(ts)&apikey=\(Constants.apiPublicKey)&hash=\(hash)")!)
+        let neededURL = Converters.convertToSecureURL(url: URL(string:(char.resourceURI ?? "")+"?ts=\(ts)&apikey=\(Constants.apiPublicKey)&hash=\(hash)")!)
         let session = URLSession(configuration: .default)
         session.dataTask(with:  neededURL) { (data, response, error) in
             if let err = error {

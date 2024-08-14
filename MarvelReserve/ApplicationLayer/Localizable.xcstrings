@@ -298,6 +298,7 @@
       }
     },
     "Server did not respond, prease try later" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {

@@ -21,7 +21,7 @@ struct MarvelTabView: View {
         ZStack{
             if NetworkModel.isConnected {
                 TabView {
-                    ComicsView()
+                    ComicsListView()
                         .tabItem {
                             Label(LocalizedStringKey("Comics List"), systemImage: "books.vertical.fill")
                         }

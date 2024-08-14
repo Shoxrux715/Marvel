@@ -54,7 +54,7 @@ struct CharactersView: View {
                 }
                 .navigationBarTitle("Characters", displayMode: .inline)
                 .refreshable {
-                    vm.refresh()
+                    vm.refreshCharactersList()
                 }
                 .navigationDestination(isPresented: $vm.charactersNavigate) {
                     DetailedCharactersView(Info: vm.tappedCharacter)

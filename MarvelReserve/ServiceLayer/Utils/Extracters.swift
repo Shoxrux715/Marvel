@@ -8,7 +8,7 @@
 import Foundation
 
 struct Extracters {
-    static func extractImage(data: [String: String]) -> URL {
+    static func extractImageURL(data: [String: String]) -> URL {
         let path = data["path"] ?? ""
         let ext = data["extension"] ?? ""
         let http = URL(string: "\(path).\(ext)")!

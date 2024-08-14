@@ -70,11 +70,11 @@ class CharacterApiGetter: ObservableObject {
         }.resume()
     }
     
-    func refresh(){
+    func refreshCharactersList(){
         charactersList?.removeAll()
     }
     
-    func loadData() {
+    func loadCharactersList() {
         Task(priority: .medium) {
             getCharactersList()
         }

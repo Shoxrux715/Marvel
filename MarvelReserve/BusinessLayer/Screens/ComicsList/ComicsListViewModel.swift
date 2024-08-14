@@ -49,16 +49,16 @@ class ComicsApiGetter: ObservableObject {
     
     var searchCancellableComic: AnyCancellable? = nil
     
-    lazy var error = ""
+    var error: String?
     
     private var offsetPage = 0
     
     
     init() {
-        loadData()
+        loadComicsList()
     }
     
-    func getComicsList() async throws {
+    func getComicsList() async {
         let ts = String(Date().timeIntervalSince1970)
         let hash = Converters.MD5(data: "\(ts)\(Constants.apiPrivateKey)\(Constants.apiPublicKey)")
         let urlString =
@@ -67,8 +67,6 @@ class ComicsApiGetter: ObservableObject {
             return
         }
         
-//        comicModel.extra
-        
         var request  = URLRequest(url: url)
         request.timeoutInterval = 180.0
         
@@ -76,7 +74,15 @@ class ComicsApiGetter: ObservableObject {
         session.dataTask(with: request) { (data, response, error) in
             if let err = error {
                 print("Error: \(err)")
-//                throw NSError()
+                self.error = err.localizedDescription
+            }
+            guard let httpsResponse = response as? HTTPURLResponse else {
+                self.error = "Bad HTTPS response"
+                return
+            }
+            guard httpsResponse.statusCode == 200 else {
+                self.error = "Error code: \(httpsResponse.statusCode)"
+                return
             }
             guard let data = data else {
                 return
@@ -90,7 +96,6 @@ class ComicsApiGetter: ObservableObject {
                     comicsList.append(contentsOf: info?.data.results ?? [] )
                 }
             } catch {
-//                throw NSError()
                 print("Error in catch: \(error)")
             }
         }.resume()
@@ -115,6 +120,8 @@ class ComicsApiGetter: ObservableObject {
 //        catch {
 //            throw MVError.invalidData
 //        }
+
+//        comicModel.extra
     }
     
     func getComicsStartWithList() {
@@ -152,21 +159,18 @@ class ComicsApiGetter: ObservableObject {
         tappedComics = comic
     }
     
-    func loadData() {
+    func loadComicsList() {
         Task(priority: .high) {
             do {
-                try await getComicsList()
-            } catch(let err) {
-                showAlert = true
-                error = err.localizedDescription
+                await getComicsList()
             }
         }
     }
     
-    func refresh(){
+    func refreshComicsList(){
         comicsList.removeAll()
         offsetPage = 0
-        loadData()
+        loadComicsList()
     }
     
 }

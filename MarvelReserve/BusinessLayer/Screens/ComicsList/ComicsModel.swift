@@ -47,18 +47,18 @@ struct PriceList: Codable, Hashable {
     var price: Double
 }
 
-class ComicModel {
-    
-    var model: Comic!
-    
-    init(model: Comic) {
-        self.model = model
-    }
-    
-    func extractComicImageURL() -> URL? {
-        return model["data"] as URL
-    }
-}
+//class ComicModel {
+//    
+//    var model: Comic
+//    
+//    init(model: Comic) {
+//        self.model = model
+//    }
+//    
+//    func extractComicImageURL() -> URL? {
+//        return model["data"] as URL
+//    }
+//}
 
 
 

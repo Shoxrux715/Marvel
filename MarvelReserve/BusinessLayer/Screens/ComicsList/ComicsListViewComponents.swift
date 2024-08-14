@@ -8,7 +8,7 @@
 import SwiftUI
 import Kingfisher
 
-extension ComicsView {
+extension ComicsListView {
    
     @ViewBuilder
     func searchComicView() -> some View{
@@ -39,7 +39,7 @@ extension ComicsView {
         } label: {
             HStack(alignment: .top, spacing: 20){
                 HStack(alignment: .center){
-                    KFImage(Extracters.extractImage(data: comics.thumbnail))
+                    KFImage(Extracters.extractImageURL(data: comics.thumbnail))
                         .resizable()
                         .scaledToFill()
                         .clipped()
@@ -50,7 +50,7 @@ extension ComicsView {
                         .overlay(Circle().stroke(Color.black, lineWidth: 1))
                         .gesture(LongPressGesture(minimumDuration: 10.0)
                             .updating($imageBeingShown) { state, gesture, transaction in
-                                selectedImageUrl = Extracters.extractImage(data: comics.thumbnail)
+                                selectedImageUrl = Extracters.extractImageURL(data: comics.thumbnail)
                                 gesture = state
                                 transaction.animation = .smooth
                             }
@@ -100,5 +100,4 @@ extension ComicsView {
             }
         }
     }
-
 }

@@ -25,7 +25,7 @@ struct CharacterForDetailedComicView: View {
                 ScrollView{
                     VStack(alignment: .center, spacing: 20) {
                         HStack(alignment: .center) {
-                            KFImage(Extracters.extractImage(data: vm.character!.thumbnail ))
+                            KFImage(Extracters.extractImageURL(data: vm.character!.thumbnail ))
                                 .aspectRatio(1, contentMode: .fill)
                                 .frame(minWidth: 450, alignment: .center)
                                 .scaledToFill()

@@ -83,7 +83,7 @@ struct DetailedComicView: View{
         ScrollView{
             VStack(alignment: .center, spacing: 20) {
                 HStack(alignment: .center){
-                    KFImage(Extracters.extractImage(data: Info!.thumbnail ))
+                    KFImage(Extracters.extractImageURL(data: Info!.thumbnail ))
                         .aspectRatio(1, contentMode: .fill)
                         .frame(minWidth: 450, alignment: .center)
                         .scaledToFill()
@@ -198,7 +198,7 @@ struct DetailedComicView: View{
         let hash = Converters.MD5(data: "\(ts)\(Constants.apiPrivateKey)\(Constants.apiPublicKey)")
         let mb = url+"?ts=\(ts)&apikey=\(Constants.apiPublicKey)&hash=\(hash)"
         let session = URLSession(configuration: .default)
-        session.dataTask(with: Converters.httpsURL(url: URL(string: mb)!)) { data, response, error in
+        session.dataTask(with: Converters.convertToSecureURL(url: URL(string: mb)!)) { data, response, error in
             if let err = error {
                 print(err.localizedDescription)
                 return

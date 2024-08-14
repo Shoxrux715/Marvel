@@ -18,14 +18,7 @@ struct Converters {
         .joined()
     }
     
-    static func rightUrl(url :URL) -> URL {
-        let http = url
-        var comps = URLComponents(url: http, resolvingAgainstBaseURL: false)
-        comps?.scheme = "https"
-        return (comps?.url!)!
-    }
-    
-    static func httpsURL(url :URL) -> URL {
+    static func convertToSecureURL(url :URL) -> URL {
         let http = url
         var comps = URLComponents(url: http, resolvingAgainstBaseURL: false)
         comps?.scheme = "https"

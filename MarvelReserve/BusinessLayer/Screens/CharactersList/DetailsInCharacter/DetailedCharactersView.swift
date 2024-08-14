@@ -40,7 +40,7 @@ struct DetailedCharactersView: View {
         ScrollView{
             VStack(alignment: .center, spacing: 20) {
                 HStack(alignment: .center){
-                    KFImage(Extracters.extractImage(data: Info!.thumbnail))
+                    KFImage(Extracters.extractImageURL(data: Info!.thumbnail))
                         .aspectRatio(1, contentMode: .fill)
                         .frame(minWidth: 450, alignment: .center)
                         .scaledToFill()

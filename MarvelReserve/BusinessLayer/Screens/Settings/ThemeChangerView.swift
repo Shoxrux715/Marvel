@@ -7,10 +7,13 @@
 
 import SwiftUI
 
-struct ThemeChanger: View {
+struct ThemeChangerView: View {
+    
     var scheme: ColorScheme
     @AppStorage("userTheme") private var userTheme: Schemes = .systemDefault
+   
     @Namespace private var animation
+    
     var body: some View {
         VStack(spacing: 15){
             Circle()

@@ -33,7 +33,7 @@ extension CharactersView {
     func cell(_ character: Character) -> some View {
         ZStack{
             HStack(alignment: .top, spacing: 15){
-                KFImage(Extracters.extractImage(data: character.thumbnail))
+                KFImage(Extracters.extractImageURL(data: character.thumbnail))
                     .resizable()
                     .scaledToFill()
                     .clipped()
@@ -44,7 +44,7 @@ extension CharactersView {
                     .overlay(Circle().stroke(Color.gray.opacity(0.7), lineWidth: 1))
                     .gesture(LongPressGesture(minimumDuration: 10.0)
                         .updating($imageBeingShown) { state, gesture, transaction in
-                            selectedImageUrl = Extracters.extractImage(data: character.thumbnail)
+                            selectedImageUrl = Extracters.extractImageURL(data: character.thumbnail)
                             gesture = state
                             transaction.animation = .smooth
                         }
